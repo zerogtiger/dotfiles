@@ -52,6 +52,12 @@ require('packer').startup(function(use)
   use 'tpope/vim-rhubarb'
   use 'lewis6991/gitsigns.nvim'
 
+  -- NERDTree
+  use 'preservim/nerdtree'
+
+  -- LaTeX related
+  -- use 'lervag/vimtex'
+
   -- use 'navarasu/onedark.nvim' -- Theme inspired by Atom
   use 'morhetz/gruvbox' -- Gruvbox theme
   use 'nvim-lualine/lualine.nvim' -- Fancier statusline
@@ -443,4 +449,134 @@ cmp.setup {
     { name = 'luasnip' },
   },
 }
+-- Building & running code related
+-- Current file name
+fn = vim.fn.expand('%')
+if fn:sub(1, 2)==[[.\]] then
+  fn = fn:sub(3)
+end
 
+-- Reset file name
+vim.api.nvim_create_user_command("FNReset", function ()
+  fn = vim.fn.expand('%')
+  if fn:sub(1,2)==[[.\]] then
+    fn = fn:sub(3)
+  end
+  print("Current file: \""..fn.."\"")
+end, {})
+
+-- Current file name
+vim.api.nvim_create_user_command("FN", function ()
+  print("Current file: \"".. fn.."\"")
+end, {})
+
+-- Delete all buffers
+vim.api.nvim_create_user_command("BufClear", function ()
+  vim.cmd([[%bd! | e# | bd#]])
+end, {})
+
+-- Hotkeys
+vim.keymap.set('n', '<F2>', function() run_file() end, { desc = 'Runs executable associated with the current file' })
+vim.keymap.set('n', '<F3>', function() compile_file() end, { desc = 'Compiles the current file' })
+vim.keymap.set('n', '<F4>', function() compile_run_file() end, { desc = 'Compiles the current file then runs the executable' })
+vim.keymap.set('n', '<F12>', function() debug_file() end, { desc = 'Debugs the current file' })
+
+-- Helper functions
+function file_ext(flnm)
+    return flnm:match("(%.%w+)$") or ""
+end
+
+function file_name(flnm)
+    return flnm:sub(1, #flnm-#file_ext(flnm))
+end
+
+-- <F2>: Run file
+function run_file()
+  local cmd = ':vsplit | wincmd L | 60 wincmd | | startinsert | term '
+  if file_ext(fn) == '.cpp'  then
+    cmd = cmd .. cpp_run()
+  elseif file_ext(fn) == '.java' then
+      cmd = cmd .. java_run()
+    -- print(fn)
+    -- print(cmd)
+  else
+      print 'No assigned executable for current file type'
+      return
+  end
+  vim.cmd(cmd);
+end
+
+-- <F3>: Compile file
+function compile_file()
+  local cmd = ':vsplit | wincmd L | 60 wincmd | | term '
+  if file_ext(fn) == '.cpp'  then
+    cmd = cmd .. cpp_compile()
+  elseif file_ext(fn) == '.java' then
+    cmd = cmd .. java_compile()
+  else
+    print 'No assigned compiler for current file type'
+    return
+  end
+  vim.cmd(cmd)
+end
+
+-- <F4>: Compile run file
+function compile_run_file()
+  local cpl_cmd = ':vsplit | wincmd L | 60 wincmd | | term '
+  local run_cmd = 'Hex | startinsert | term '
+  if file_ext(fn) == '.cpp'  then
+    cpl_cmd = cpl_cmd .. cpp_compile()
+    run_cmd = run_cmd .. cpp_run()
+  elseif file_ext(fn) == '.java' then
+    cpl_cmd = cpl_cmd .. java_compile()
+    run_cmd = run_cmd .. java_run()
+  else
+      print 'No assigned compiler / executable for current file type'
+    return
+  end
+  vim.cmd(cpl_cmd)
+  vim.cmd(':redraw')
+  local exit_code = vim.fn.jobwait({vim.b.terminal_job_id}, -1)[1]
+  if (exit_code == 0) then
+    vim.cmd(run_cmd)
+  end
+end
+
+-- <F12>: Debug file
+function debug_file()
+    local cmd = ':vsplit | wincmd L | 127 wincmd | | startinsert | term '
+    if file_ext(fn) == '.cpp' then
+        cmd = cmd..cpp_debug()
+    else
+        print 'No assigned debugger for current file type'
+        return
+    end
+    vim.cmd(cmd)
+end
+
+-- C++
+function cpp_compile()
+  return 'g++ -g -Wshadow -Wall -Wextra --std=c++17 '..fn..' -o '..file_name(fn)
+end
+
+function cpp_run()
+  return [[.\]].. file_name(fn)
+end
+
+function cpp_debug()
+    return 'gdb -tui '..file_name(fn)
+end
+
+-- Java
+function java_compile()
+    return [[C:\tools\jdk-17_windows-x64_bin\jdk-17.0.5\\bin\javac.exe ]] .. fn
+end
+
+function java_run()
+    return [[C:\tools\jdk-17_windows-x64_bin\jdk-17.0.5\bin\java.exe ]] .. file_name(fn)
+end
+
+-- Set block cursor for normal, visual, command, and insert mode
+vim.opt.guicursor = 'n-v-c-i:block-Cursor'
+-- vim.set(guicursor=n-v-c-i:block-Cursor)
+-- require'lspconfig'.jdtls.setup{ cmd = {'jdtls'} }
