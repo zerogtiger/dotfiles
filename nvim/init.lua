@@ -480,6 +480,7 @@ vim.keymap.set('n', '<F2>', function() run_file() end, { desc = 'Runs executable
 vim.keymap.set('n', '<F3>', function() compile_file() end, { desc = 'Compiles the current file' })
 vim.keymap.set('n', '<F4>', function() compile_run_file() end, { desc = 'Compiles the current file then runs the executable' })
 vim.keymap.set('n', '<F12>', function() debug_file() end, { desc = 'Debugs the current file' })
+vim.keymap.set('i', '<C-e>', '<C-o>A', { desc = 'Puts cursor at the end of the line without exiting insert mode' })
 
 -- Helper functions
 function file_ext(flnm)
