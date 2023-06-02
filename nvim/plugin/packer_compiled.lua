@@ -84,6 +84,22 @@ _G.packer_plugins = {
     path = "C:\\Users\\Tiger\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\LuaSnip",
     url = "https://github.com/L3MON4D3/LuaSnip"
   },
+  ["alpha-nvim"] = {
+    config = { "\27LJ\2\n,\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\17alpha-config\frequire\0" },
+    loaded = true,
+    path = "C:\\Users\\Tiger\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\alpha-nvim",
+    url = "https://github.com/goolord/alpha-nvim"
+  },
+  ayutheme = {
+    loaded = true,
+    path = "C:\\Users\\Tiger\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\ayutheme",
+    url = "https://github.com/ayu-theme/ayu-vim"
+  },
+  catppuccin = {
+    loaded = true,
+    path = "C:\\Users\\Tiger\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\catppuccin",
+    url = "https://github.com/catppuccin/nvim"
+  },
   ["cmp-nvim-lsp"] = {
     loaded = true,
     path = "C:\\Users\\Tiger\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\cmp-nvim-lsp",
@@ -93,6 +109,16 @@ _G.packer_plugins = {
     loaded = true,
     path = "C:\\Users\\Tiger\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\cmp_luasnip",
     url = "https://github.com/saadparwaiz1/cmp_luasnip"
+  },
+  dracula = {
+    loaded = true,
+    path = "C:\\Users\\Tiger\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\dracula",
+    url = "https://github.com/dracula/vim"
+  },
+  everforest = {
+    loaded = true,
+    path = "C:\\Users\\Tiger\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\everforest",
+    url = "https://github.com/sainnhe/everforest"
   },
   ["fidget.nvim"] = {
     loaded = true,
@@ -108,6 +134,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "C:\\Users\\Tiger\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\gruvbox",
     url = "https://github.com/morhetz/gruvbox"
+  },
+  iceberg = {
+    loaded = true,
+    path = "C:\\Users\\Tiger\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\iceberg",
+    url = "https://github.com/cocopon/iceberg.vim"
   },
   ["indent-blankline.nvim"] = {
     loaded = true,
@@ -134,6 +165,11 @@ _G.packer_plugins = {
     path = "C:\\Users\\Tiger\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\neodev.nvim",
     url = "https://github.com/folke/neodev.nvim"
   },
+  nordtheme = {
+    loaded = true,
+    path = "C:\\Users\\Tiger\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\nordtheme",
+    url = "https://github.com/nordtheme/vim"
+  },
   ["nvim-cmp"] = {
     loaded = true,
     path = "C:\\Users\\Tiger\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\nvim-cmp",
@@ -143,6 +179,12 @@ _G.packer_plugins = {
     loaded = true,
     path = "C:\\Users\\Tiger\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\nvim-lspconfig",
     url = "https://github.com/neovim/nvim-lspconfig"
+  },
+  ["nvim-tree.lua"] = {
+    config = { "\27LJ\2\n;\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\14nvim-tree\frequire\0" },
+    loaded = true,
+    path = "C:\\Users\\Tiger\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\nvim-tree.lua",
+    url = "https://github.com/nvim-tree/nvim-tree.lua"
   },
   ["nvim-treesitter"] = {
     loaded = true,
@@ -156,15 +198,45 @@ _G.packer_plugins = {
     path = "C:\\Users\\Tiger\\AppData\\Local\\nvim-data\\site\\pack\\packer\\opt\\nvim-treesitter-textobjects",
     url = "https://github.com/nvim-treesitter/nvim-treesitter-textobjects"
   },
+  ["nvim-web-devicons"] = {
+    loaded = true,
+    path = "C:\\Users\\Tiger\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\nvim-web-devicons",
+    url = "https://github.com/nvim-tree/nvim-web-devicons"
+  },
+  nvimesweeper = {
+    loaded = true,
+    path = "C:\\Users\\Tiger\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\nvimesweeper",
+    url = "https://github.com/seandewar/nvimesweeper"
+  },
+  onedark = {
+    loaded = true,
+    path = "C:\\Users\\Tiger\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\onedark",
+    url = "https://github.com/joshdick/onedark.vim"
+  },
   ["packer.nvim"] = {
     loaded = true,
     path = "C:\\Users\\Tiger\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\packer.nvim",
     url = "https://github.com/wbthomason/packer.nvim"
   },
+  papercolor = {
+    loaded = true,
+    path = "C:\\Users\\Tiger\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\papercolor",
+    url = "https://github.com/NLKNguyen/papercolor-theme"
+  },
   ["plenary.nvim"] = {
     loaded = true,
     path = "C:\\Users\\Tiger\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\plenary.nvim",
     url = "https://github.com/nvim-lua/plenary.nvim"
+  },
+  rosepine = {
+    loaded = true,
+    path = "C:\\Users\\Tiger\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\rosepine",
+    url = "https://github.com/rose-pine/neovim"
+  },
+  seoul256 = {
+    loaded = true,
+    path = "C:\\Users\\Tiger\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\seoul256",
+    url = "https://github.com/junegunn/seoul256.vim"
   },
   ["telescope-fzf-native.nvim"] = {
     loaded = true,
@@ -176,6 +248,21 @@ _G.packer_plugins = {
     path = "C:\\Users\\Tiger\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
   },
+  tokyonight = {
+    loaded = true,
+    path = "C:\\Users\\Tiger\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\tokyonight",
+    url = "https://github.com/folke/tokyonight.nvim"
+  },
+  undotree = {
+    loaded = true,
+    path = "C:\\Users\\Tiger\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\undotree",
+    url = "https://github.com/mbbill/undotree"
+  },
+  ["vim-dispatch"] = {
+    loaded = true,
+    path = "C:\\Users\\Tiger\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\vim-dispatch",
+    url = "https://github.com/tpope/vim-dispatch"
+  },
   ["vim-fugitive"] = {
     loaded = true,
     path = "C:\\Users\\Tiger\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\vim-fugitive",
@@ -186,14 +273,22 @@ _G.packer_plugins = {
     path = "C:\\Users\\Tiger\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\vim-rhubarb",
     url = "https://github.com/tpope/vim-rhubarb"
   },
-  ["vim-sleuth"] = {
+  vimtex = {
     loaded = true,
-    path = "C:\\Users\\Tiger\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\vim-sleuth",
-    url = "https://github.com/tpope/vim-sleuth"
+    path = "C:\\Users\\Tiger\\AppData\\Local\\nvim-data\\site\\pack\\packer\\start\\vimtex",
+    url = "https://github.com/lervag/vimtex"
   }
 }
 
 time([[Defining packer_plugins]], false)
+-- Config for: nvim-tree.lua
+time([[Config for nvim-tree.lua]], true)
+try_loadstring("\27LJ\2\n;\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\14nvim-tree\frequire\0", "config", "nvim-tree.lua")
+time([[Config for nvim-tree.lua]], false)
+-- Config for: alpha-nvim
+time([[Config for alpha-nvim]], true)
+try_loadstring("\27LJ\2\n,\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\17alpha-config\frequire\0", "config", "alpha-nvim")
+time([[Config for alpha-nvim]], false)
 -- Load plugins in order defined by `after`
 time([[Sequenced loading]], true)
 vim.cmd [[ packadd nvim-treesitter ]]

@@ -10,6 +10,8 @@ end
 require('packer').startup(function(use)
   -- Package manager
   use 'wbthomason/packer.nvim'
+  
+  use 'mbbill/undotree'
 
   use { -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
@@ -25,6 +27,12 @@ require('packer').startup(function(use)
       'folke/neodev.nvim',
     },
   }
+
+  -- Minesweeper
+  use 'seandewar/nvimesweeper'
+  use 'seandewar/killersheep.nvim'
+  use 'Eandrju/cellular-automaton.nvim'
+  use 'alec-gibson/nvim-tetris'
 
   -- Make
   use 'tpope/vim-dispatch'
@@ -52,18 +60,53 @@ require('packer').startup(function(use)
   use 'tpope/vim-rhubarb'
   use 'lewis6991/gitsigns.nvim'
 
-  -- NERDTree
-  use 'preservim/nerdtree'
+    -- VimTex
+  use {'lervag/vimtex',}
+
+  -- file explorer
+  -- use 'preservim/nerdtree'
+  use {
+    'nvim-tree/nvim-tree.lua',
+    requires = {
+      'nvim-tree/nvim-web-devicons', -- optional
+    },
+    config = function()
+      require("nvim-tree").setup {}
+    end
+  }
+  -- use 'nvim-tree/nvim-tree.lua'
+  -- use 'nvim-tree/nvim-web-devicons'
 
   -- LaTeX related
   -- use 'lervag/vimtex'
 
+  -- start screen with alpha-nvim
+  use {
+    'goolord/alpha-nvim',
+    requires = { 'nvim-tree/nvim-web-devicons' },
+    config = function ()
+      -- require('alpha').setup(require'alpha-config')
+      require('alpha-config')
+    end
+  }
   -- use 'navarasu/onedark.nvim' -- Theme inspired by Atom
-  use 'morhetz/gruvbox' -- Gruvbox theme
+  use{'morhetz/gruvbox', as = 'gruvbox'} -- Gruvbox theme
+  use{'dracula/vim', as = 'dracula'}
+  use{'catppuccin/nvim', as = 'catppuccin'}
+  use{'folke/tokyonight.nvim', as = 'tokyonight'}
+  use{'joshdick/onedark.vim', as = 'onedark'}
+  use{'nordtheme/vim', as = 'nordtheme'}
+  use{'cocopon/iceberg.vim', as = 'iceberg'}
+  use{'sainnhe/everforest', as = 'everforest'}
+  use{'ayu-theme/ayu-vim', as = 'ayutheme'}
+  use{'rose-pine/neovim', as = 'rosepine'}
+  use{'NLKNguyen/papercolor-theme', as = 'papercolor'}
+  use{'junegunn/seoul256.vim', as = 'seoul256'}
+
   use 'nvim-lualine/lualine.nvim' -- Fancier statusline
   use 'lukas-reineke/indent-blankline.nvim' -- Add indentation guides even on blank lines
   use 'numToStr/Comment.nvim' -- "gc" to comment visual regions/lines
-  use 'tpope/vim-sleuth' -- Detect tabstop and shiftwidth automatically
+  -- use 'tpope/vim-sleuth' -- Detect tabstop and shiftwidth automatically
 
   -- Fuzzy Finder (files, lsp, etc)
   use { 'nvim-telescope/telescope.nvim', branch = '0.1.x', requires = { 'nvim-lua/plenary.nvim' } }
@@ -117,12 +160,15 @@ vim.wo.relativenumber = true
 
 -- Tab space set to 4
 -- expandtab doesn't work due to sleuth
-vim.cmd [[
-set autoindent
-set shiftwidth=4
-set softtabstop=4
-set tabstop=4
-]]
+vim.opt.tabstop = 4
+vim.opt.softtabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.expandtab = true
+vim.opt.autoindent = true
+vim.opt.cursorline = true
+vim.opt.cursorcolumn = true
+vim.opt.smartindent = true
+vim.opt.scrolloff = 5
 -- vim.w.expandtab = true
 -- vim.o.tabstop = 4
 -- vim.o.shiftwidth=4
@@ -141,11 +187,12 @@ vim.o.ignorecase = false
 vim.o.smartcase = true
 
 -- Decrease update time
-vim.o.updatetime = 250
+vim.o.updatetime = 50
 vim.wo.signcolumn = 'yes'
 
 -- Set colorscheme
 vim.o.termguicolors = true
+vim.cmd [[let g:gruvbox_contrast_dark='hard']]
 vim.cmd [[colorscheme gruvbox]]
 
 -- Set completeopt to have a better completion experience
@@ -182,7 +229,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 require('lualine').setup {
   options = {
     icons_enabled = false,
-    theme = 'gruvbox',
+    theme = 'auto',
     component_separators = '|',
     section_separators = '',
   },
@@ -237,19 +284,23 @@ vim.keymap.set('n', '<leader>/', function()
   })
 end, { desc = '[/] Fuzzily search in current buffer]' })
 
-vim.keymap.set('n', '<leader>sf', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
+vim.keymap.set('n', '<leader>ff', require('telescope.builtin').find_files, { desc = '[F]ind [F]iles' })
 vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc = '[S]earch [H]elp' })
 vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { desc = '[S]earch current [W]ord' })
-vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
+vim.keymap.set('n', '<leader>lg', require('telescope.builtin').live_grep, { desc = '[L]ive [G]rep' })
 vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
+vim.keymap.set('n', '<leader>cl', require('telescope.builtin').colorscheme, { desc = '[C]o[L]orscheme' })
+vim.keymap.set('n', '<leader>of', require('telescope.builtin').oldfiles, { desc = '[O]ld [F]iles' })
 
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
 require('nvim-treesitter.configs').setup {
   -- Add languages to be installed here that you want installed for treesitter
-  ensure_installed = { 'c', 'cpp', 'java', 'vim', 'lua', 'python', 'typescript', 'help' },
+  ensure_installed = { 'c', 'cpp', 'java', 'vim', 'lua', 'markdown', 'python', 'typescript', 'vimdoc' },
 
-  highlight = { enable = true },
+  highlight = { enable = true,
+            disable = {'latex'}, -- list of language that will be disabled
+    },
   indent = { enable = true, disable = { 'python' } },
   incremental_selection = {
     enable = true,
@@ -311,6 +362,19 @@ vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist)
+vim.g.tex_flavor = 'latex'
+vim.g.vimtex_quickfix_mode=0
+-- vim.g.conceallevel=2
+-- vim.g.tex_conceal='abdmgs'
+-- vim.g.
+
+vim.g.vimtex_view_method = 'general'
+-- vim.g.vimtex_view_method = 'sumatrapdf'
+vim.g.vimtex_view_general_viewer='SumatraPDF'
+
+-- let g:vimtex_view_general_viewer = 'open'
+-- vim.g.vimtex_view_general_options = '-SIGHUP @pdf'
+-- vim.g.vimtex_vew_general_options =[[C:\Program Files (x86)\Foxit Software\Foxit PDF Editor\FoxitPDFEditor.exe" @pdf /A nolock=1]]
 
 -- LSP settings.
 --  This function gets run when an LSP connects to a particular buffer.
@@ -369,17 +433,19 @@ local servers = {
   -- rust_analyzer = {},
   -- tsserver = {},
 
-  sumneko_lua = {
-    Lua = {
-      workspace = { checkThirdParty = false },
-      telemetry = { enable = false },
-    },
-  },
+  -- sumneko_lua = {
+  --   Lua = {
+  --     workspace = { checkThirdParty = false },
+  --     telemetry = { enable = false },
+  --   },
+  -- },
+
+  -- lua_ls = {},
 }
 
 -- Setup neovim lua configuration
 require('neodev').setup()
---
+
 -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
@@ -449,17 +515,52 @@ cmp.setup {
     { name = 'luasnip' },
   },
 }
+
+-- require('nvim-tree').setup({
+-- renderer = {
+--         icons = {
+--             show = {
+--                 folder = true,
+--                 file = true,
+--                 git = true,
+--                 folder_arrow = true,
+--                 modified = true,
+--             }
+--         }
+--     },
+-- })
+
+vim.keymap.set('n', '<leader>fe', vim.cmd.NvimTreeToggle, { desc = '[F]ile [E]xplorer' })
+vim.keymap.set('n', '<leader>u', vim.cmd.UndotreeToggle, { desc = '[U]ndotree Toggle' })
+vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+vim.keymap.set("x", "<leader>p", [["_dP]])
+vim.keymap.set({"n", "v"}, "<leader>y", [["+y]])
+vim.keymap.set("n", "<leader>Y", [["+Y]])
+vim.keymap.set({"n", "v"}, "<leader>d", [["_d]])
+vim.keymap.set("n", "<leader>fm", vim.lsp.buf.format)
+
+vim.opt.colorcolumn = "100"
+
+vim.opt.conceallevel=2
+
+
 -- Building & running code related
 -- Current file name
 fn = vim.fn.expand('%')
-if fn:sub(1, 2)==[[.\]] then
+if fn:sub(1, 2)==[[./]] then
   fn = fn:sub(3)
+elseif fn:sub(1,2)==[[.\]] then
+    fn = fn:sub(3)
 end
+-- print("Current file: \""..fn.."\"")
 
 -- Reset file name
 vim.api.nvim_create_user_command("FNReset", function ()
   fn = vim.fn.expand('%')
-  if fn:sub(1,2)==[[.\]] then
+  if fn:sub(1,2)==[[./]] then
+    fn = fn:sub(3)
+  elseif fn:sub(1,2)==[[.\]] then
     fn = fn:sub(3)
   end
   print("Current file: \""..fn.."\"")
@@ -481,6 +582,7 @@ vim.keymap.set('n', '<F3>', function() compile_file() end, { desc = 'Compiles th
 vim.keymap.set('n', '<F4>', function() compile_run_file() end, { desc = 'Compiles the current file then runs the executable' })
 vim.keymap.set('n', '<F12>', function() debug_file() end, { desc = 'Debugs the current file' })
 vim.keymap.set('i', '<C-e>', '<C-o>A', { desc = 'Puts cursor at the end of the line without exiting insert mode' })
+-- vim.keymap.set('n', '<leader>e', function() vim.cmd [[NERDTreeToggle]] end, { desc = 'Open file explorer (NERDTree)' })
 
 -- Helper functions
 function file_ext(flnm)
@@ -570,14 +672,14 @@ end
 
 -- Java
 function java_compile()
-    return [[C:\tools\jdk-17_windows-x64_bin\jdk-17.0.5\\bin\javac.exe ]] .. fn
+    return [[C:\tools\jdk-17_windows-x64_bin\jdk-17.0.5\bin\javac.exe -d ./build/ ]] .. fn
 end
 
 function java_run()
-    return [[C:\tools\jdk-17_windows-x64_bin\jdk-17.0.5\bin\java.exe ]] .. file_name(fn)
+    return [[C:\tools\jdk-17_windows-x64_bin\jdk-17.0.5\bin\java.exe -cp ./build/ ]] .. file_name(fn)
 end
 
--- Set block cursor for normal, visual, command, and insert mode
-vim.opt.guicursor = 'n-v-c-i:block-Cursor'
+-- Set block cursor for normal, visual, command, and insert mode (deprecated, found workaround)
+-- vim.opt.guicursor = 'n-v-c-i:block-Cursor'
 -- vim.set(guicursor=n-v-c-i:block-Cursor)
 -- require'lspconfig'.jdtls.setup{ cmd = {'jdtls'} }
