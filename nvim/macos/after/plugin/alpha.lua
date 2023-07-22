@@ -39,68 +39,8 @@ local function lineToStartShiftGradient(lines)
 	return out
 end
 
--- local cool = lineToStartPopGradient(coolLines)
--- local robust = lineToStartShiftGradient(robustLines)
--- local efficient = lineToStartGradient(efficientLines)
-
--- local headers = {cool, robust, efficient}
--- 
 
 local header_art = {
-	-- {
-	-- [[╔═╗╔═╗╦ ╦  ╔╗╔╔═╗  ╔╦╗╔═╗  ╔╦╗╦╔═╗╦═╗╔═╗╔═╗╔═╗╔═╗╔╦╗]],
-	-- [[╚═╗╠═╣╚╦╝  ║║║║ ║   ║ ║ ║  ║║║║║  ╠╦╝║ ║╚═╗║ ║╠╣  ║ ]],
-	-- [[╚═╝╩ ╩ ╩   ╝╚╝╚═╝   ╩ ╚═╝  ╩ ╩╩╚═╝╩╚═╚═╝╚═╝╚═╝╚   ╩ ]],
-	-- },
-	-- {
-	-- 	[[_\~ /\ `/   |\| ()   ~|~ ()   |\/| | ( /? () _\~ () /= ~|~ ]],
-	-- },
-	-- {
-	-- 	[[  ()     __  _    ,   _ __   __     ________    _ _ _     _    __  _ __   __ ()     __  ___________]],
-	-- 	[[  /\    /  )' )  /   ' )  ) / ')      /  / ')  ' ) ) )   | )  /  )' )  ) / ')/\    / ')  /  '  /   ]],
-	-- 	[[ /  )  /--/  /  /     /  / /  /    --/  /  /    / / /,---|/  /     /--' /  //  )  /  /,-/-, --/    ]],
-	-- 	[[/__/__/  (_ (__/_    /  (_(__/    (_/  (__/    / ' (_ \_/ \_(__/  /  \_(__//__/__(__/(_/   (_/     ]],
-	-- 	[[             //                                                                                    ]],
-	-- 	[[            (/                                                                                     ]],
-	-- },
-	-- {
-	-- 	[[ |_O_|# \O/#   O/#   O/# \O/#'\   /`\O/#\O/# \O/#\O  \O/#  \O/#|_O_|#\O/#  O/#'\   /`]],
-	-- 	[[  _|     Y_   _|    <|   _Y    \ /  _Y   Y.___Y   |#  Y___,_Y   _|   _Y    |_   \ /  ]],
-	-- 	[[_|  \   /  |_|  \   / \_| |     X _| |  / \   |  / \  |  _| | _|  \_| |   /  |   X   ]],
-	-- 	[[    |_./   |_    \,_| |_  |_   /O\#  |__| |_  |__\ /__|     |_    |_  |_./   |_ /O\# ]],
-	-- },
-	-- {
-	-- 	[[83 65 89  78 79  84 79  77 73 67 82 79 83 79 70 84 ]],
-	-- },
-	-- {
-	-- 	[[  ,   __,_(_/_     ,__,   _,_    -/- _,_     ,____,   .  __   ,_   _,_ ,    _,_ /) -/-]],
-	-- 	[[_/_)_(_/(__/_    _/ / (__(_/    _/__(_/    _/ / / (__/__(_,__/ (__(_/_/_)__(_/_//__/_ ]],
-	-- 	[[         (/                                                                  _/       ]],
-	-- 	[[                                                                             /)       ]],
-	-- 	[[                                                                             `        ]],
-	-- },
-	-- {
-	-- 	[[  __,    _, __   _   _ __   ___    _________    _ _ _  ___ ,___ _ __    ___  __,   ___  ____________]],
-	-- 	[[ (      / |( /  /   ( /  ) /  ()  (  /  /  ()  ( / ) )( / /   /( /  )  /  ()(     /  ()(  /  (  /   ]],
-	-- 	[[  `.   /--| (__/     /  / /   /     /  /   /    / / /  / /      /--<  /   /  `.  /   /  -/--   /    ]],
-	-- 	[[(___)_/   |_ _/_    /  (_(___/    _/  (___/    / / (__/_(___/  /   \_(___/ (___)(___/  _/    _/     ]],
-	-- 	[[            //                                                                                      ]],
-	-- 	[[           (/                                                                                       ]],
-	-- },
-	-- {
-	-- 	[[ ____ ____ ____ _________ ____ ____ _________ ____ ____ _________ ____ ____ ____ ____ ____ ____ ____ ____ ____ ]],
-	-- 	[[||S |||A |||Y |||       |||N |||O |||       |||T |||O |||       |||M |||I |||C |||R |||O |||S |||O |||F |||T ||]],
-	-- 	[[||__|||__|||__|||_______|||__|||__|||_______|||__|||__|||_______|||__|||__|||__|||__|||__|||__|||__|||__|||__||]],
-	-- 	[[|/__\|/__\|/__\|/_______\|/__\|/__\|/_______\|/__\|/__\|/_______\|/__\|/__\|/__\|/__\|/__\|/__\|/__\|/__\|/__\|]],
-	-- },
-	-- {
-	-- 	[[   ___     ___   __   __           _  _     ___             _____    ___            __  __    ___     ___     ___     ___     ___     ___      ___   _____  ]],
-	-- 	[[  / __|   /   \  \ \ / /    o O O | \| |   / _ \     o O O |_   _|  / _ \     o O O|  \/  |  |_ _|   / __|   | _ \   / _ \   / __|   / _ \    | __| |_   _| ]],
-	-- 	[[  \__ \   | - |   \ V /    o      | .` |  | (_) |   o        | |   | (_) |   o     | |\/| |   | |   | (__    |   /  | (_) |  \__ \  | (_) |   | _|    | |   ]],
-	-- 	[[  |___/   |_|_|   _|_|_   TS__[O] |_|\_|   \___/   TS__[O]  _|_|_   \___/   TS__[O]|_|__|_|  |___|   \___|   |_|_\   \___/   |___/   \___/   _|_|_   _|_|_  ]],
-	-- 	[[_|"""""|_|"""""|_| """ | {======|_|"""""|_|"""""| {======|_|"""""|_|"""""| {======|_|"""""|_|"""""|_|"""""|_|"""""|_|"""""|_|"""""|_|"""""|_| """ |_|"""""| ]],
-	-- 	[["`-0-0-'"`-0-0-'"`-0-0-'./o--000'"`-0-0-'"`-0-0-'./o--000'"`-0-0-'"`-0-0-'./o--000'"`-0-0-'"`-0-0-'"`-0-0-'"`-0-0-'"`-0-0-'"`-0-0-'"`-0-0-'"`-0-0-'"`-0-0-' ]],
-	-- },
 	{
 		[[   ,             ,   ]],
 		[[   :===.     .===:   ]],
@@ -480,41 +420,6 @@ for i = 1,#header_art, 1
 do 
    table.insert(headers, lineToStartGradient(header_art[i]))
 end
---
--- local no11 = lineToStartGradient(no1)
--- local no22 = lineToStartGradient(no2)
--- local no33 = lineToStartGradient(no3)
--- local no44 = lineToStartGradient(no4)
--- local no55 = lineToStartGradient(no5)
--- local no66 = lineToStartGradient(no6)
--- local no77 = lineToStartGradient(no7)
--- local no88 = lineToStartGradient(no8)
--- local no99 = lineToStartGradient(no9)
--- local art11 = lineToStartGradient(art1)
--- local art22 = lineToStartGradient(art2)
--- local art33 = lineToStartGradient(art3)
--- local art44 = lineToStartGradient(art4)
--- local art55 = lineToStartGradient(art5)
--- local art66 = lineToStartGradient(art6)
--- local art77 = lineToStartGradient(art7)
--- local art88 = lineToStartGradient(art8)
--- local art99 = lineToStartGradient(art9)
--- local art110 = lineToStartGradient(art10)
--- local art121 = lineToStartGradient(art11)
--- local art132 = lineToStartGradient(art12)
--- local art143 = lineToStartGradient(art13)
--- local art154 = lineToStartGradient(art14)
--- local art165 = lineToStartGradient(art15)
--- local art176 = lineToStartGradient(art16)
--- local art187 = lineToStartGradient(art17)
--- local art198 = lineToStartGradient(art18)
---
---
---     a = {}
---     for line in io.lines() do
---       table.insert(a, line)
---     end
---     print(table.getn(a))         --> (number of lines read)
 
 local function header_chars()
   math.randomseed(os.time())
@@ -566,7 +471,7 @@ local buttons = {
         -- { type = "padding", val = 1 },
         dashboard.button("SPC lg", "  Find text"),
         { type = "padding", val = 1 },
-		dashboard.button("c", "  Configuration", ":e ~/AppData/local/nvim/init.lua<CR>"),
+		dashboard.button("c", "  Configuration", ":e ~/.config/nvim/./<CR>"),
         -- { type = "padding", val = 1 },
         dashboard.button("q", "  Quit", "<cmd>qa<CR>"),
         { type = "padding", val = 2 },
