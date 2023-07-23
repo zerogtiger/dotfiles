@@ -18,12 +18,6 @@ require('lazy').setup({
         "nvim-tree/nvim-tree.lua",
         version = "*",
         lazy = false,
-        dependencies = {
-            "nvim-tree/nvim-web-devicons",
-        },
-        config = function()
-            require("nvim-tree").setup {}
-        end,
     },
 
     -- Fuzzy finder via Telescope
@@ -39,9 +33,6 @@ require('lazy').setup({
 
     -- Commenting code
     { 'numToStr/Comment.nvim' },
-
-    -- Latex related
-    { 'lervag/vimtex' },
 
     -- Git related
     { 'tpope/vim-fugitive' },
@@ -65,43 +56,36 @@ require('lazy').setup({
             -- LSP Support
             { 'neovim/nvim-lspconfig' }, -- Required
             {                            -- Optional
-                'williamboman/mason.nvim',
-                build = function()
-                    pcall(vim.cmd, 'MasonUpdate')
-                end,
-            },
-            { 'williamboman/mason-lspconfig.nvim' }, -- Optional
+            'williamboman/mason.nvim',
+            build = function()
+                pcall(vim.cmd, 'MasonUpdate')
+            end,
+        },
+        { 'williamboman/mason-lspconfig.nvim' }, -- Optional
 
-            -- Autocompletion
-            { 'hrsh7th/nvim-cmp' },     -- Required
-            { 'hrsh7th/cmp-nvim-lsp' }, -- Required
-            { 'L3MON4D3/LuaSnip' },     -- Required
-        }
-    },
+        -- Autocompletion
+        { 'hrsh7th/nvim-cmp' },     -- Required
+        { 'hrsh7th/cmp-nvim-lsp' }, -- Required
+        { 'L3MON4D3/LuaSnip' },     -- Required
+    }
+},
 
-    -- Make related
-    { 'tpope/vim-dispatch' },
+-- Make related
+{ 'tpope/vim-dispatch' },
 
-    -- Statusline via Lualine
-    { 'nvim-lualine/lualine.nvim' },
+-- Statusline via Lualine
+{ 'nvim-lualine/lualine.nvim' },
 
-    -- Indentation indicator
-    { 'lukas-reineke/indent-blankline.nvim' },
+-- Indentation indicator
+{ 'lukas-reineke/indent-blankline.nvim' },
 
-    -- Startup screen via Alpha
-    {
-        'goolord/alpha-nvim',
-        event = "VimEnter",
-        dependencies = { 'nvim-tree/nvim-web-devicons' },
-    },
+-- Colorschemes
+{ 'morhetz/gruvbox',                name = 'gruvbox' },
+{ 'dracula/vim',                    name = 'dracula' },
+{ 'nordtheme/vim',                  name = 'nordtheme' },
+{ 'sainnhe/everforest',             name = 'everforest' },
+{ 'NLKNguyen/papercolor-theme',     name = 'papercolor' },
 
-    -- Colorschemes
-    { 'morhetz/gruvbox',                name = 'gruvbox' },
-    { 'dracula/vim',                    name = 'dracula' },
-    { 'nordtheme/vim',                  name = 'nordtheme' },
-    { 'sainnhe/everforest',             name = 'everforest' },
-    { 'NLKNguyen/papercolor-theme',     name = 'papercolor' },
-
-    -- Games and other useless stuff
-    { 'seandewar/nvimesweeper' },
+-- Games and other useless stuff
+{ 'seandewar/nvimesweeper' },
 })
