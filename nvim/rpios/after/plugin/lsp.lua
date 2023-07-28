@@ -3,17 +3,13 @@ local lsp = require("lsp-zero")
 lsp.preset("recommended")
 
 lsp.ensure_installed({
-    'lua_ls',
-    'clangd',
+    -- 'lua_ls',
+    -- 'clangd',
     'jdtls',  -- java
+    -- 'pylsp',  --python3 virtual environment
+    -- 'r_language_server',
     'ltex',   --latex
-    'texlab', -- latex
-    'pylsp',  --python
-    'r_language_server',
-    'html',   -- html
-    'cssls',
-    'tsserver',
-    'rome',
+    -- 'rome',
 })
 
 -- Fix Undefined global 'vim'
