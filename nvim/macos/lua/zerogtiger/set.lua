@@ -47,3 +47,4 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 
 -- LaTeX
 vim.g.tex_flavor = 'latex'
+vim.opt.conceallevel=2
