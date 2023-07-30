@@ -40,6 +40,9 @@ require('lazy').setup({
     -- Commenting code
     { 'numToStr/Comment.nvim' },
 
+    -- Floating termina via FRerm
+    { 'numToStr/FTerm.nvim' },
+
     -- Latex related
     { 'lervag/vimtex' },
 

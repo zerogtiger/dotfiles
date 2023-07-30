@@ -13,6 +13,8 @@ local location_cmd = { 'K', 'L', 'J', 'H', '' }
 local location_split_cmd = { 'v', '', 'v', '', '' }
 local resize_cmd = { '', 'vertical', '', 'vertical', '' }
 
+local fterm = require('FTerm')
+
 local targetfile_leader = [[<leader>\]]
 
 -- Markings:
@@ -61,7 +63,8 @@ vim.keymap.set('n', targetfile_leader .. "<space>", vim.cmd.TargetFileCompileExe
 vim.keymap.set('n', targetfile_leader .. "d", vim.cmd.TargetFileDebug, { desc = '[D]ebugs target file' })
 vim.keymap.set('n', targetfile_leader .. "ws", vim.cmd.TargetFileWindow, { desc = 'target file [W]indow preview [S]how' })
 vim.keymap.set('n', targetfile_leader .. "wr", vim.cmd.TargetFileWindowReset, { desc = 'target file [W]indow [R]eset' })
-vim.keymap.set('n', targetfile_leader .. "ss", vim.cmd.TargetFileWindowSize, { desc = 'target file window [S]ize [S]how' })
+vim.keymap.set('n', targetfile_leader .. "ss", vim.cmd.TargetFileWindowSize,
+    { desc = 'target file window [S]ize [S]how' })
 vim.keymap.set('n', targetfile_leader .. "sr", vim.cmd.TargetFileWindowSizeReset,
     { desc = 'target file window [S]ize [R]eset' })
 vim.keymap.set('n', targetfile_leader .. "sc", vim.cmd.TargetFileWindowSizeCustom,
@@ -98,7 +101,12 @@ vim.api.nvim_create_user_command("TargetFileExecute", function()
         print 'No assigned executable for current file type'
         return
     elseif filetype.execute_cmd ~= nil then
-        vim.cmd(window_open_cmd().open_cmd .. 'term ' .. expand_to_cmd(filetype.execute_cmd))
+        if target_file_window_location <= 4 then
+            vim.cmd(window_open_cmd().open_cmd .. 'term ' .. expand_to_cmd(filetype.execute_cmd))
+        else
+            fterm.run(expand_to_cmd(filetype.execute_cmd))
+            vim.cmd('stopinsert')
+        end
     end
 end, {})
 
@@ -108,7 +116,12 @@ vim.api.nvim_create_user_command("TargetFileCompile", function()
         print 'No assigned compiler for current file type'
         return
     elseif filetype.compile_cmd ~= nil then
-        vim.cmd(window_open_cmd().open_cmd .. 'term ' .. expand_to_cmd(filetype.compile_cmd))
+        if target_file_window_location <= 4 then
+            vim.cmd(window_open_cmd().open_cmd .. 'term ' .. expand_to_cmd(filetype.compile_cmd))
+        else
+            fterm.run(expand_to_cmd(filetype.compile_cmd))
+            vim.cmd('stopinsert')
+        end
     end
 end, {})
 
@@ -119,13 +132,24 @@ vim.api.nvim_create_user_command("TargetFileCompileExecute", function()
         print('No assigned compiler / executable for current file type')
         return
     elseif filetype.compile_cmd ~= nil then
-        vim.cmd(window_cmds.open_cmd .. 'term ' .. expand_to_cmd(filetype.compile_cmd))
-        local exit_code = vim.fn.jobwait({ vim.b.terminal_job_id }, -1)[1]
-        if (exit_code == 0) then
-            vim.cmd(window_cmds.split_cmd .. 'term ' .. expand_to_cmd(filetype.execute_cmd))
+        if target_file_window_location <= 4 then
+            vim.cmd(window_cmds.open_cmd .. 'term ' .. expand_to_cmd(filetype.compile_cmd))
+            local exit_code = vim.fn.jobwait({ vim.b.terminal_job_id }, -1)[1]
+            if (exit_code == 0) then
+                vim.cmd(window_cmds.split_cmd .. 'term ' .. expand_to_cmd(filetype.execute_cmd))
+            end
+        else
+            fterm.run(expand_to_cmd(filetype.compile_cmd))
+            fterm.run(expand_to_cmd(filetype.execute_cmd))
+            vim.cmd('stopinsert')
         end
     elseif filetype.execute_cmd then
-        vim.cmd(window_open_cmd().open_cmd .. 'term ' .. expand_to_cmd(filetype.execute_cmd))
+        if target_file_window_location <= 4 then
+            vim.cmd(window_open_cmd().open_cmd .. 'term ' .. expand_to_cmd(filetype.execute_cmd))
+        else
+            fterm.run(expand_to_cmd(filetype.execute_cmd))
+            vim.cmd('stopinsert')
+        end
     end
 end, {})
 
@@ -188,23 +212,29 @@ end, {})
 -- Window
 -- Generates command to open the specified window
 function window_open_cmd()
-    -- print(location_cmd[target_file_window_location])
-    -- print(resize_cmd[target_file_window_location])
-    local open_cmd = 'new | wincmd ' ..
-        location_cmd[target_file_window_location] ..
-        ' | ' ..
-        resize_cmd[target_file_window_location] ..
-        ' resize ' ..
-        target_file_window_size ..
-        ' | set nowrap | redraw | '
-    local split_cmd = location_split_cmd[target_file_window_location] .. 'new | set nowrap | redraw | '
-    return { open_cmd = open_cmd, split_cmd = split_cmd }
+    if target_file_window_location <= 4 then
+        local open_cmd = 'new | wincmd ' ..
+            location_cmd[target_file_window_location] ..
+            ' | ' ..
+            resize_cmd[target_file_window_location] ..
+            ' resize ' ..
+            target_file_window_size ..
+            ' | set nowrap | redraw | '
+        local split_cmd = location_split_cmd[target_file_window_location] .. 'new | set nowrap | redraw | '
+        return { open_cmd = open_cmd, split_cmd = split_cmd }
+    else
+        return 'FTermOpen \n'
+    end
 end
 
 -- Generates command to preview the window
 function window_preview_cmd()
     local window_cmds = window_open_cmd()
-    return (window_cmds.open_cmd .. window_cmds.split_cmd .. 'sleep 500m | bd! | bd!')
+    if target_file_window_location <= 4 then
+        return (window_cmds.open_cmd .. window_cmds.split_cmd .. 'sleep 500m | bd! | bd!')
+    else
+        return (window_cmds .. 'redraw \n sleep 500m \n FTermClose')
+    end
 end
 
 function window_reset()
@@ -225,7 +255,7 @@ function window_location_reset(window_location)
     window_location = tonumber(window_location)
     local old_location = target_file_window_location
     target_file_window_location = window_location or target_file_window_location
-    if old_location%2 ~= target_file_window_location%2 then
+    if old_location % 2 ~= target_file_window_location % 2 then
         window_size_reset()
     end
 end
