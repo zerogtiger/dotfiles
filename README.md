@@ -1,2 +1,2 @@
 # dotfiles
- Dotfiles for programs on main Mac OS / Raspberry Pi OS
+Dotfiles for programs on main Mac OS and sidecar Raspberry Pi OS.
