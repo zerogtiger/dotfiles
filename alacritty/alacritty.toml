@@ -1,0 +1,102 @@
+[colors.bright]
+black = "#676767"
+red = "#ff6d67"
+green = "#5ff967"
+yellow = "#fefb67"
+blue = "#6871ff"
+magenta = "#ff76ff"
+cyan = "#5ffdff"
+white = "#fffeff"
+
+[colors.cursor]
+cursor = "#c7c7c7"
+text = "#fffeff"
+
+[colors.normal]
+black = "#676767"
+red = "#ff6d67"
+green = "#5ff967"
+yellow = "#fefb67"
+blue = "#6871ff"
+magenta = "#ff76ff"
+cyan = "#5ffdff"
+white = "#fffeff"
+# black = "#000000"
+# red = "#c91b00"
+# green = "#00c200"
+# yellow = "#c7c400"
+# blue = "#0225c7"
+# magenta = "#c930c7"
+# cyan = "#00c5c7"
+# white = "#c7c7c7"
+
+[colors.primary]
+background = "#000000"
+foreground = "#c7c7c7"
+
+[cursor.style]
+blinking = "Never"
+
+[env]
+TERM = "xterm-256color"
+# enable_rgb="true"
+
+[font]
+# ligatures = true
+size = 14.0
+
+[font.bold]
+family = "Iosevka Nerd Font"
+style = "Bold"
+
+[font.glyph_offset]
+x = 0
+y = 0
+
+[font.italic]
+family = "Iosevka Nerd Font"
+style = "Light Oblique"
+
+[font.normal]
+family = "Iosevka Nerd Font"
+style = "Light"
+
+[font.offset]
+x = 0
+y = 0
+
+[[keyboard.bindings]]
+action = "Paste"
+key = "V"
+mods = "Control|Shift"
+
+[[keyboard.bindings]]
+action = "Copy"
+key = "C"
+mods = "Control|Shift"
+
+[[keyboard.bindings]]
+action = "ResetFontSize"
+key = "Key0"
+mods = "Control"
+
+[[keyboard.bindings]]
+action = "IncreaseFontSize"
+key = "Equals"
+mods = "Control"
+
+[[keyboard.bindings]]
+action = "DecreaseFontSize"
+key = "Minus"
+mods = "Control"
+
+[window]
+dynamic_title = true
+# history = 10000
+# live_config_reload = true
+# save_to_clipboard = true
+# semantic_escape_chars = ",│`|:\"' ()[]{}<>"
+
+[window.padding]
+x = 0
+y = 0

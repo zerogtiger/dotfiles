@@ -34,6 +34,26 @@ local supported_languages = {
         -- debug_cmd = 'gdb -tui %fben',
         -- debut_window_cmd = 'tabe | set nowrap | startinsert | term ',
     },
+    ['.c'] = {
+        name = 'C',
+        ext = '.c',
+        compile_cmd = 'gcc -g -Wshadow -Wall -Wextra %fp -o %fben',
+        execute_cmd = '%fben',
+        debug_cmd = nil,
+        debut_window_cmd = nil,
+        -- debug_cmd = 'gdb -tui %fben',
+        -- debut_window_cmd = 'tabe | set nowrap | startinsert | term ',
+    },
+    ['.rs'] = {
+        name = 'Rust',
+        ext = '.rs',
+        compile_cmd = 'rustc %fp',
+        execute_cmd = '%fen',
+        debug_cmd = nil,
+        debut_window_cmd = nil,
+        -- debug_cmd = 'gdb -tui %fben',
+        -- debut_window_cmd = 'tabe | set nowrap | startinsert | term ',
+    },
     ['.java'] = {
         name = 'Java',
         ext = '.java',
@@ -263,7 +283,7 @@ end
 -- Target file related
 function file_path_reset(file_path)
     if file_path == '' or file_path == nil then
-        file_path = target_file_path
+        file_path = vim.fn.expand('%:p')
     end
     target_file_path = file_path
     print(target_file_path)

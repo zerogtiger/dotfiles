@@ -1,5 +1,13 @@
 local builtin = require('telescope.builtin')
 
+require "telescope".setup {
+  pickers = {
+    colorscheme = {
+      enable_preview = true,
+    }
+  }
+}
+
 vim.keymap.set('n', '<leader><space>', builtin.buffers, { desc = '[ ] Buffers' })
 vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = '[F]ind [F]iles' })
 vim.keymap.set('n', '<leader>of', builtin.oldfiles, { desc = '[O]ld [F]iles' })

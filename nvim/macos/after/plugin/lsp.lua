@@ -10,10 +10,12 @@ lsp.ensure_installed({
     'texlab', -- latex
     'pylsp',  --python
     'r_language_server',
-    'html',   -- html
-    'cssls',
     'tsserver',
-    'rome',
+    'html', -- html
+    'cssls',
+    'tailwindcss',
+    'rust_analyzer',
+    'biome', -- json, js, ts
 })
 
 -- Fix Undefined global 'vim'
@@ -41,13 +43,12 @@ lsp.on_attach(function(client, bufnr)
     vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = '[K] hover documentation' })
     -- vim.keymap.set("n", "<leader>ws", function() vim.lsp.buf.workspace_symbol() end, opts)
     --  vim.keymap.set("n", "<leader>vd", function() vim.diagnostic.open_float() end, opts)
-    vim.keymap.set("n", "[d", vim.diagnostic.goto_next, opts)
-    vim.keymap.set("n", "]d", vim.diagnostic.goto_prev, opts)
+    vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
+    vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
     --  vim.keymap.set("n", "<leader>vca", function() vim.lsp.buf.code_action() end, opts)
     --  vim.keymap.set("n", "<leader>vrr", function() vim.lsp.buf.references() end, opts)
     --  vim.keymap.set("n", "<leader>vrn", function() vim.lsp.buf.rename() end, opts)
     --  vim.keymap.set("i", "<C-h>", function() vim.lsp.buf.signature_help() end, opts)
-    vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts)
     vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, opts)
 end)
 
@@ -57,6 +58,7 @@ vim.diagnostic.config({
     virtual_text = true
 })
 
+-- JDTLS setup
 require 'lspconfig'.jdtls.setup { cmd = { 'jdtls' } }
 
 -- require('lspconfig')['clangd'].setup {

@@ -1,0 +1,231 @@
+=======[ Delimiters ]=======
+
+> l( -- parenthesis: \left( \right)
+> l[ -- square braces: \left[ \right]
+> l{ -- curly braces: \left{ \right}
+> b( -- big parenthesis: \big( \big)
+> b[ -- big square braces: \big[ \big]
+> b{ -- big curly braces: \big{ \big}
+
+> \( -- escaped parenthesis: \( \)
+> \[ -- escaped square braces: \[ \]
+> \{ -- escaped curly braces: \{ \}
+
+> `` -- LaTeX double quotation marks: `` ''
+
+=======[ Environments ]=======
+
+> new -- generic environment:
+\begin{ }
+    
+\end{ }
+
+> n2 -- environment with 1 extra argument:
+\begin{ }{ }
+    
+\end{ }
+
+> n3 -- environment with 2 extra argument:
+\begin{ }{ }{ }
+    
+\end{ }
+
+> nt -- topic environment:
+\begin{topic}{}{}
+    
+\end{topic}
+
+> nn -- equation without numbering;
+\begin{equation*}
+    
+\end{equation*}
+
+> ss -- split equation:
+\begin{equation*}
+    \begin{split}
+        
+    \end{split}
+\end{equation*}
+
+> all -- align without numbering
+\begin{align*}
+    
+\end{align*}
+
+> itt -- itemize environment
+\begin{itemize}
+
+    \item 
+
+\end{itemize}
+
+> enn -- enumerate enviroment
+\begin{enumerate}
+
+    \item 
+
+\end{enumerate}
+
+> mm -- inline math: $ $
+> fig -- figure
+\begin{figure}[htb!]
+  \centering
+  \includegraphics[width= \linewidth]{ }
+  \caption{ }
+  \label{fig: }
+\end{figure}
+
+=======[ Fonts ]=======
+
+> tt -- typewriter: \texttt{ }
+> tii -- italic: \textit{ }
+> tbb -- boldface: \textbf{ }
+> rmm -- math roman: \mathrm{ }
+> mcc -- math caligraphy: \mathcal{ }
+> mbf -- math boldface: \mathbf{ }
+> mbb -- math blackboard: \mathbb{ }
+> tee -- math regular text: \text{ }
+
+=======[ Greek Letters ]=======
+
+> ;a -- \alpha
+> ;b -- \beta
+> ;g -- \gamma
+> ;G -- \Gamma
+> ;d -- \delta
+> ;D -- \Delta
+> ;e -- \epsilon
+> ;ve -- \varepsilon
+> ;z -- \zeta
+> ;h -- \eta
+> ;o -- \theta
+> ;vo -- \vartheta
+> ;O -- \Theta
+> ;k -- \kappa
+> ;l -- \lambda
+> ;L -- \Lambda
+> ;m -- \mu
+> ;n -- \nu
+> ;x -- \xi
+> ;X -- \Xi
+> ;i -- \pi
+> ;I -- \Pi
+> ;r -- \rho
+> ;s -- \sigma
+> ;S -- \Sigma
+> ;t -- \tau
+> ;f -- \phi
+> ;vf -- \varphi
+> ;F -- \Phi
+> ;c -- \chi
+> ;p -- \psi
+> ;P -- \Psi
+> ;w -- \omega
+> ;W -- \Omega
+
+=======[ Luatex ]=======
+
+> tpp -- tex.sprint( )
+
+=======[ Math ]=======
+
+> ' -- superscript: ^{ }
+> ; -- subscript: _{ }
+> __ -- superscript & subscript: ^{ }_{ }
+> sd -- text subscript: _{\mathrm{ }}
+> " -- superscript:  ^{ }
+> : -- subscript:  _{ }
+> ee -- Euler's number superscript: e^{ }
+> 00 -- subscript 0 shortcut: _{0}
+> 11 -- subscript -1 shortcut: _{-1}
+> JJ -- subscript j shortcut: _{j}
+> ++ -- superscript + shortcut: ^{+}
+> CC -- complement superscript: ^{\complement}
+> ** -- conjugate superscript: ^{*}
+> vv -- vector: \vec{ }
+> ue -- unit vector with subscript: \unitvector_{ }
+> uv -- unit vector with hat: \uvec{ }
+> mt -- matrix: \mat{}
+> ff -- fraction: \frac{ }{ }
+> gg -- angle: \ang{ }
+> aa -- absolute value: \abs{ }
+> sq -- square root: \sqrt{ }
+> bnn -- binomial symbol: \binom{ }{ }
+> ll -- log with subscript: \log_{ }
+> dV -- derivative with denom. only: \dvOne{ }
+> dvv -- derivative with num. and denom.: \dv{ }{ }
+> ddv -- derivative with num., denom., and higher-order argument: \dvN{ }{ }{ }
+> pV -- partial derivative with denom. only: \pdvOne{ }
+> pvv -- partial derivative with num. and denom.: \pdv{ }{ }
+> ppv -- partial derivative with num., denom., and higher-order argument: \pdvN{ }{ }{ }
+> sM -- sum with lower limit: \sum_{ }
+> smm -- sum with upper and lower limit: \sum_{ }^{ }
+> intt -- integral with upper and lower limit: \int_{ }^{ }
+> intf -- integral from negative to positive infinity: \int_{-\infty}^{\infty}
+> bb -- boxed: \boxed{ }
+> df -- differential: \diff
+> in1 -- integral symbol: \int
+> in2 -- double integral: \iint
+> in3 -- triple integral: \iiint
+> oi1 -- closed single integral: \oint
+> oi2 -- closed double integral: \oiint
+> gdd -- gradient operator: \grad 
+> cll -- curl operator: \curl 
+> DI -- divergence operator: \div 
+> laa -- laplacian operator: \laplacian 
+> || -- parallel symbol: \parallel
+> cdd -- cdots: \cdots
+> ldd -- ldots: \ldots
+> eqq -- equiv: \equiv 
+> stm -- setminus: \setminus 
+> sbb -- subset: \subset 
+> px -- approx: \approx 
+> pt -- propto: \propto 
+> :: -- colon: \colon 
+> >> -- implies: \implies 
+> ,. -- dot product: \cdot 
+> xx -- cross product: \times 
+
+=======[ Static snippets ]=======
+
+> q -- \quad
+> qq -- \qquad
+> npp -- \newpage
+> which -- \text{ for which } 
+> all: \\text{ for all } 
+> and: \\quad \\text{and} \\quad
+> forall -- \\text{ for all } 
+> toc -- \\tableofcontents
+> inff -- \\infty
+> ii -- \\item 
+> -- -- % --------------------------------------------- %
+> hl -- hline with extra vertical space: \hline {\rule{0pt}{2.5ex}} \hspace{-7pt}
+
+=======[ System ]=======
+
+> ann -- custom annotate command: \annotate{ }{ }
+> RR -- reference: ~\ref{ }
+> dcc -- documentclass: \documentclass[10ot,letterpaper,final]{article}
+> pack -- use LaTeX package: \usepackage{ }
+> inn -- input LaTeX file: \input{~/dotfiles/config/latex/templates/}
+> lbl -- label: \label{ }
+> hpp -- hphantom: \hphantom{ }
+> TODOO -- \TODO{ }
+> nc -- \newcommand{ }{ }
+> sii -- \si{ }
+> SI --  \SI{ }{ }
+> url -- \url{ }
+> LU -- href: \href{ }{ }
+> LL -- href: \href{ }{ }
+> hss -- hspace: \hspace{ }
+> vss -- vspace: \vspace{ }
+> h1 -- section: \section{ }
+> h2 -- subsection: \subsection{ }
+> h3 -- subsubsection: \subsubsection{ }
+
+=======[ Temporary ]=======
+
+> beq -- equation with choice of labels: 
+\begin{equation}\label{eq:}
+  
+\end{equation}
