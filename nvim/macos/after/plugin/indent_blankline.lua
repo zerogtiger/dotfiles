@@ -1,4 +1,3 @@
-require("ibl").setup { scope = {enabled = true},}
 -- local highlight = {
 --     "RainbowRed",
 --     "RainbowYellow",
@@ -22,10 +21,10 @@ require("ibl").setup { scope = {enabled = true},}
 -- end)
 --
 -- vim.g.rainbow_delimiters = { highlight = highlight }
--- require("ibl").setup {
---     scope = { highlight = highlight },
---     indent = {char="▏"},
--- }
+require("ibl").setup {
+    scope = {enabled = true, highlight = highlight },
+    indent = {char="┃"},
+}
 --
 -- hooks.register(hooks.type.SCOPE_HIGHLIGHT, hooks.builtin.scope_highlight_from_extmark)
 

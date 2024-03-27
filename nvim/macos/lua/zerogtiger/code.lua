@@ -37,7 +37,7 @@ local supported_languages = {
     ['.c'] = {
         name = 'C',
         ext = '.c',
-        compile_cmd = 'gcc -g -Wshadow -Wall -Wextra %fp -o %fben',
+        compile_cmd = 'gcc -g -Wshadow -Wall -Wextra -std=c99 %fp -o %fben',
         execute_cmd = '%fben',
         debug_cmd = nil,
         debut_window_cmd = nil,

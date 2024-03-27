@@ -1,1 +1,1 @@
-vim.cmd.colorscheme("falcon")
+-- vim.cmd.colorscheme("nord")

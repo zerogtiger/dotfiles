@@ -25,7 +25,7 @@ vim.opt.smartcase = true
 
 vim.opt.termguicolors = true
 
-vim.opt.scrolloff = 5
+vim.opt.scrolloff = 4
 vim.opt.signcolumn = "yes"
 
 vim.opt.updatetime = 50
@@ -33,7 +33,9 @@ vim.opt.updatetime = 50
 vim.opt.colorcolumn = "100"
 
 vim.opt.cursorline = true
-vim.opt.cursorcolumn = true
+-- vim.opt.cursorcolumn = true
+
+vim.opt.scrollback = 100000
 
 -- Highlight on yank
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
@@ -50,13 +52,13 @@ vim.g.tex_flavor = 'latex'
 vim.opt.conceallevel=2
 
 -- Set `fg` to the color you want your window separators to have
--- vim.api.nvim_set_hl(0, 'WinSeparator', { fg = 'gray', bold = false })
-vim.opt.fillchars = {
-  horiz     = '━',
-  horizup   = '┻',
-  horizdown = '┳',
-  vert      = '┃',
-  vertleft  = '┫',
-  vertright = '┣',
-  verthoriz = '╋',
-}
+vim.api.nvim_set_hl(0, 'WinSeparator', { fg = 'gray', bold = false })
+-- vim.opt.fillchars = {
+--   horiz     = '━',
+--   horizup   = '┻',
+--   horizdown = '┳',
+--   vert      = '┃',
+--   vertleft  = '┫',
+--   vertright = '┣',
+--   verthoriz = '╋',
+-- }

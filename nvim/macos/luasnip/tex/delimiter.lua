@@ -1,43 +1,48 @@
 local helpers = require('zerogtiger.luasnip_helper_funcs')
 local get_visual = helpers.get_visual
 
--- Math context detection 
-local tex = {}
-tex.in_mathzone = function() return vim.fn['vimtex#syntax#in_mathzone']() == 1 end
-tex.in_text = function() return not tex.in_mathzone() end
-
 -- Return snippet tables
 return
 {
-  -- LEFT/RIGHT PARENTHESES
-  s({trig = "([^%a])l%(", regTrig = true, wordTrig = false, snippetType="autosnippet"},
+  -- LEFT/RIGHT ABSOLUTE VALUE
+  s({trig = "l%|", regTrig = true, wordTrig = false, snippetType="autosnippet"},
     fmta(
-      "<>\\left(<>\\right)",
+      "\\left|<>\\right|",
       {
-        f( function(_, snip) return snip.captures[1] end ),
         d(1, get_visual),
       }
-    )
+    ),
+    {condition = helpers.line_begin_or_non_letter_and_math}
+  ),
+  -- LEFT/RIGHT PARENTHESES
+  s({trig = "l%(", regTrig = true, wordTrig = false, snippetType="autosnippet"},
+    fmta(
+      "\\left(<>\\right)",
+      {
+        d(1, get_visual),
+      }
+    ),
+    {condition = helpers.line_begin_or_non_letter_and_math}
   ),
   -- LEFT/RIGHT SQUARE BRACES
-  s({trig = "([^%a])l%[", regTrig = true, wordTrig = false, snippetType="autosnippet"},
+  s({trig = "l%[", regTrig = true, wordTrig = false, snippetType="autosnippet"},
     fmta(
-      "<>\\left[<>\\right]",
+      "\\left[<>\\right]",
       {
-        f( function(_, snip) return snip.captures[1] end ),
         d(1, get_visual),
       }
-    )
+    ),
+    {condition = helpers.line_begin_or_non_letter_and_math}
   ),
   -- LEFT/RIGHT CURLY BRACES
-  s({trig = "([^%a])l%{", regTrig = true, wordTrig = false, snippetType="autosnippet"},
+  s({trig = "l%{", regTrig = true, wordTrig = false, snippetType="autosnippet"},
     fmta(
-      "<>\\left\\{<>\\right\\}",
+      "\\left\\{<>\\right\\}",
       {
-        f( function(_, snip) return snip.captures[1] end ),
         d(1, get_visual),
       }
-    )
+    ),
+    {condition = helpers.line_begin_or_non_letter_and_math}
   ),
   -- BIG PARENTHESES
   -- s({trig = "([^%a])b%(", regTrig = true, wordTrig = false, snippetType="autosnippet"},
@@ -50,54 +55,58 @@ return
   --   )
   -- ),
   -- BIG SQUARE BRACES
-  s({trig = "([^%a])b%[", regTrig = true, wordTrig = false, snippetType="autosnippet"},
-    fmta(
-      "<>\\big[<>\\big]",
-      {
-        f( function(_, snip) return snip.captures[1] end ),
-        d(1, get_visual),
-      }
-    )
-  ),
+  -- s({trig = "([^%a])b%[", regTrig = true, wordTrig = false, snippetType="autosnippet"},
+  --   fmta(
+  --     "<>\\big[<>\\big]",
+  --     {
+  --       f( function(_, snip) return snip.captures[1] end ),
+  --       d(1, get_visual),
+  --     }
+  --   )
+  -- ),
   -- BIG CURLY BRACES
-  s({trig = "([^%a])b%{", regTrig = true, wordTrig = false, snippetType="autosnippet"},
-    fmta(
-      "<>\\big\\{<>\\big\\}",
-      {
-        f( function(_, snip) return snip.captures[1] end ),
-        d(1, get_visual),
-      }
-    )
-  ),
+  -- s({trig = "([^%a])b%{", regTrig = true, wordTrig = false, snippetType="autosnippet"},
+  --   fmta(
+  --     "<>\\big\\{<>\\big\\}",
+  --     {
+  --       f( function(_, snip) return snip.captures[1] end ),
+  --       d(1, get_visual),
+  --     }
+  --   )
+  -- ),
   -- ESCAPED PARENTHESES
-  s({trig = "([^%a])\\%(", regTrig = true, wordTrig = false, snippetType="autosnippet", priority=2000},
+  s({trig = "%(%(", regTrig = true, wordTrig = false, snippetType="autosnippet", priority=2000},
     fmta(
-      "<>\\(<>\\)",
+    "\\(<>\\)",
       {
-        f( function(_, snip) return snip.captures[1] end ),
         d(1, get_visual),
       }
-    )
+    ),
+    {condition = helpers.line_begin_or_non_letter_and_text}
   ),
   -- ESCAPED SQUARE BRACES
-  s({trig = "([^%a])\\%[", regTrig = true, wordTrig = false, snippetType="autosnippet", priority=2000},
+  s({trig = "%[%[", regTrig = true, wordTrig = false, snippetType="autosnippet", priority=2000},
     fmta(
-      "<>\\[<>\\]",
+      [[
+      \[
+        <>
+      \]
+      ]],
       {
-        f( function(_, snip) return snip.captures[1] end ),
         d(1, get_visual),
       }
-    )
+    ),
+    {condition = helpers.line_begin_or_non_letter_and_text}
   ),
   -- ESCAPED CURLY BRACES
-  s({trig = "([^%a])\\%{", regTrig = true, wordTrig = false, snippetType="autosnippet", priority=2000},
+  s({trig = "%{%{", regTrig = true, wordTrig = false, snippetType="autosnippet", priority=2000},
     fmta(
-      "<>\\{<>\\}",
+      "\\{<>\\}",
       {
-        f( function(_, snip) return snip.captures[1] end ),
         d(1, get_visual),
       }
-    )
+    ),
+    {condition = helpers.line_begin_or_non_letter}
   ),
   -- LATEX QUOTATION MARK
   s({trig = "``", snippetType="autosnippet"},

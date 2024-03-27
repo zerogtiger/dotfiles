@@ -464,11 +464,11 @@ return
     {condition = tex.in_mathzone}
   ),
   -- PARALLEL SYMBOL, i.e. \parallel
-  s({trig = "||", snippetType="autosnippet"},
-    {
-      t("\\parallel"),
-    }
-  ),
+  -- s({trig = "||", snippetType="autosnippet"},
+  --   {
+  --     t("\\parallel"),
+  --   }
+  -- ),
   -- CDOTS, i.e. \cdots
   s({trig = "cdd", snippetType="autosnippet"},
     {
@@ -497,6 +497,12 @@ return
   s({trig = "sbb", snippetType="autosnippet"},
     {
       t("\\subset "),
+    }
+  ),
+  -- SUBSETEQ, i.e. \subseteq
+  s({trig = "sbq", snippetType="autosnippet"},
+    {
+      t("\\subseteq "),
     }
   ),
   -- APPROX, i.e. \approx

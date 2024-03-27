@@ -11,42 +11,42 @@ tex.in_text = function() return not tex.in_mathzone() end
 -- Return snippet tables
 return
   {
-    -- ANNOTATE (custom command for annotating equation derivations)
-    s({trig = "ann"},
-      fmta(
-        [[
-      \annotate{<>}{<>}
-      ]],
-        {
-          i(1),
-          d(2, get_visual),
-        }
-      )
-    ),
-    -- REFERENCE
-    s({trig = " RR", snippetType="autosnippet", wordTrig=false},
-      fmta(
-        [[
-      ~\ref{<>}
-      ]],
-        {
-          d(1, get_visual),
-        }
-      )
-    ),
-    -- DOCUMENTCLASS
-    s({trig = "dcc", snippetType="autosnippet"},
-      fmta(
-        [=[
-        \documentclass[<>]{<>}
-        ]=],
-        {
-          i(1, "10ot,letterpaper,final"),
-          i(2, "article"),
-        }
-      ),
-      { condition = line_begin }
-    ),
+    -- -- ANNOTATE (custom command for annotating equation derivations)
+    -- s({trig = "ann"},
+    --   fmta(
+    --     [[
+    --   \annotate{<>}{<>}
+    --   ]],
+    --     {
+    --       i(1),
+    --       d(2, get_visual),
+    --     }
+    --   )
+    -- ),
+    -- -- REFERENCE
+    -- s({trig = " RR", snippetType="autosnippet", wordTrig=false},
+    --   fmta(
+    --     [[
+    --   ~\ref{<>}
+    --   ]],
+    --     {
+    --       d(1, get_visual),
+    --     }
+    --   )
+    -- ),
+    -- -- DOCUMENTCLASS
+    -- s({trig = "dcc", snippetType="autosnippet"},
+    --   fmta(
+    --     [=[
+    --     \documentclass[<>]{<>}
+    --     ]=],
+    --     {
+    --       i(1, "10ot,letterpaper,final"),
+    --       i(2, "article"),
+    --     }
+    --   ),
+    --   { condition = line_begin }
+    -- ),
     -- USE A LATEX PACKAGE
     s({trig = "pack", snippetType="autosnippet"},
       fmta(
@@ -72,17 +72,17 @@ return
       ),
       { condition = line_begin }
     ),
-    -- LABEL
-    s({trig = "lbl", snippetType="autosnippet"},
-      fmta(
-        [[
-      \label{<>}
-      ]],
-        {
-          d(1, get_visual),
-        }
-      )
-    ),
+    -- -- LABEL
+    -- s({trig = "lbl", snippetType="autosnippet"},
+    --   fmta(
+    --     [[
+    --   \label{<>}
+    --   ]],
+    --     {
+    --       d(1, get_visual),
+    --     }
+    --   )
+    -- ),
     -- HPHANTOM
     s({trig = "hpp", snippetType="autosnippet"},
       fmta(
@@ -94,14 +94,14 @@ return
         }
       )
     ),
-    s({trig = "TODOO", snippetType="autosnippet"},
-      fmta(
-        [[\TODO{<>}]],
-        {
-          d(1, get_visual),
-        }
-      )
-    ),
+    -- s({trig = "TODOO", snippetType="autosnippet"},
+    --   fmta(
+    --     [[\TODO{<>}]],
+    --     {
+    --       d(1, get_visual),
+    --     }
+    --   )
+    -- ),
     s({trig="nc"},
       fmta(
         [[\newcommand{<>}{<>}]],
@@ -112,23 +112,23 @@ return
       ),
       {condition = line_begin}
     ),
-    s({trig="sii", snippetType="autosnippet"},
-      fmta(
-        [[\si{<>}]],
-        {
-          i(1),
-        }
-      )
-    ),
-    s({trig="SI"},
-      fmta(
-        [[\SI{<>}{<>}]],
-        {
-          i(1),
-          i(2)
-        }
-      )
-    ),
+    -- s({trig="sii", snippetType="autosnippet"},
+    --   fmta(
+    --     [[\si{<>}]],
+    --     {
+    --       i(1),
+    --     }
+    --   )
+    -- ),
+    -- s({trig="SI"},
+    --   fmta(
+    --     [[\SI{<>}{<>}]],
+    --     {
+    --       i(1),
+    --       i(2)
+    --     }
+    --   )
+    -- ),
     -- URL 
     s({trig="url"},
       fmta(
