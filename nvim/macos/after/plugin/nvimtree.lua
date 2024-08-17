@@ -8,6 +8,14 @@ require("nvim-tree").setup({
     -- symlink_destination = false,
     indent_markers = {
       enable = true,
+      inline_arrows = true,
+      icons = {
+        corner = "╰",
+        edge = "│",
+        item = "│",
+        bottom = "─",
+        none = " ",
+      },
     },
     icons = {
       -- git_placement = "signcolumn",

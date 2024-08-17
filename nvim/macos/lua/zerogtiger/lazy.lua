@@ -29,8 +29,8 @@ require('lazy').setup({
   -- Fuzzy finder via Telescope
   {
     'nvim-telescope/telescope.nvim',
-    tag = '0.1.2',
-    -- or                              , branch = '0.1.x',
+    -- tag = '0.1.x',
+    branch = '0.1.x',
     dependencies = { 'nvim-lua/plenary.nvim' }
   },
 
@@ -139,6 +139,9 @@ require('lazy').setup({
   },
 
   -- Colorschemes
+  --TESTING
+  -- { 'zerogtiger/kanagawa_fork.nvim',    name = 'kanagawa_fork' },               -- TEST
+
   { 'morhetz/gruvbox',                  name = 'gruvbox' },    -- core
   { 'dracula/vim',                      name = 'dracula' },    -- core
   { 'rose-pine/neovim',                 name = 'rosepine' },   -- core
@@ -201,9 +204,9 @@ require('lazy').setup({
   --   name = 'helix-theme',
   --   version = "*"
   -- },                                                       -- Bad latex support
-  { 'archseer/colibri.vim',             name = 'colibri' },    -- waiting for issue update
-  { "savq/melange-nvim",                name = 'melange' },    -- to be tested
-  { "miikanissi/modus-themes.nvim",     name = 'modus-theme' }, -- to be tested
+  { 'archseer/colibri.vim',             name = 'colibri' },     -- waiting for issue update
+  { "savq/melange-nvim",                name = 'melange' },     -- to be tested
+  { "zerogtiger/modus-themes.nvim",     name = 'modus-theme' }, -- to be tested
   {
     'AlexvZyl/nordic.nvim',
     lazy = false,
@@ -222,5 +225,8 @@ require('lazy').setup({
   { 'seandewar/killersheep.nvim' },
   { 'Eandrju/cellular-automaton.nvim' },
   { 'alec-gibson/nvim-tetris' },
+
+  -- Scrolling
+  { 'psliwka/vim-smoothie' },
 
 })

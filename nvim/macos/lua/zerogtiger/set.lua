@@ -33,23 +33,26 @@ vim.opt.updatetime = 50
 vim.opt.colorcolumn = "100"
 
 vim.opt.cursorline = true
--- vim.opt.cursorcolumn = true
+vim.opt.cursorcolumn = true
 
 vim.opt.scrollback = 100000
+
+vim.o.foldenable = false;
+vim.o.foldmethod = 'indent'
 
 -- Highlight on yank
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
 vim.api.nvim_create_autocmd('TextYankPost', {
-    callback = function()
-        vim.highlight.on_yank()
-    end,
-    group = highlight_group,
-    pattern = '*',
+  callback = function()
+    vim.highlight.on_yank()
+  end,
+  group = highlight_group,
+  pattern = '*',
 })
 
 -- LaTeX
 vim.g.tex_flavor = 'latex'
-vim.opt.conceallevel=2
+vim.opt.conceallevel = 2
 
 -- Set `fg` to the color you want your window separators to have
 vim.api.nvim_set_hl(0, 'WinSeparator', { fg = 'gray', bold = false })

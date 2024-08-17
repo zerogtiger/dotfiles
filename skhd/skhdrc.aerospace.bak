@@ -1,0 +1,96 @@
+# change window focus within space
+rshift + rcmd + alt + ctrl - j : aerospace focus --boundaries all-monitors-outer-frame --boundaries-action wrap-around-all-monitors down || (yabai -m display --focus south; yabai -m window --focus first)
+rshift + rcmd + alt + ctrl - k : aerospace focus --boundaries all-monitors-outer-frame --boundaries-action wrap-around-all-monitors up || (yabai -m display --focus nouth; yabai -m window --focus last)
+rshift + rcmd + alt + ctrl - h : aerospace focus --boundaries all-monitors-outer-frame --boundaries-action wrap-around-all-monitors left || (yabai -m display --focus west; yabai -m window --focus last)
+rshift + rcmd + alt + ctrl - l : aerospace focus --boundaries all-monitors-outer-frame --boundaries-action wrap-around-all-monitors right || (yabai -m display --focus east; yabai -m window --focus first)
+
+#change focus between external displays (left and right)
+#                             [
+rshift + rcmd + alt + ctrl - 0x21 : aerospace focus-monitor --wrap-around left
+#                             ]
+rshift + rcmd + alt + ctrl - 0x1E : aerospace focus-monitor --wrap-around right
+# rshift + rcmd + alt + ctrl - p : yabai -m display --focus west
+# rshift + rcmd + alt + ctrl - n : yabai -m display --focus east
+
+# rotate layout clockwise
+rshift + rcmd + alt + ctrl + lshift - c : aerospace layout horizontal vertical # !SUBSTITUTE
+# rshift + rcmd + alt + ctrl + lshift - p : yabai -m space --rotate 90
+
+# flip along x-axis: CAPS + LSHIFT + -
+# rshift + rcmd + alt + ctrl + lshift - 0x1B : yabai -m space --mirror x-axis # !NONE
+
+# flip along y-axis: CAPS + LSHIFT + |
+# rshift + rcmd + alt + ctrl + lshift - 0x2A : yabai -m space --mirror y-axis # !NONE
+
+# toggle window float
+rshift + rcmd + alt + ctrl + lshift - f : aerospace layout floating tiling
+
+# m   aximize a window
+rshift + rcmd + alt + ctrl + lshift - m : aerospace layout tiles accordion #!ENHANCEMENT
+
+# balance out tree of windows (resize to occupy same area)
+# rshift + rcmd + alt + ctrl + lshift - space : yabai -m space --balance # !FUTURE RESEARCH REQUIRED
+
+# swap windows
+# rshift + rcmd + alt + ctrl + lshift - j : yabai -m window --swap south
+# rshift + rcmd + alt + ctrl + lshift - k : yabai -m window --swap north
+# rshift + rcmd + alt + ctrl + lshift - h : yabai -m window --swap west
+# rshift + rcmd + alt + ctrl + lshift - l : yabai -m window --swap east
+# rshift + rcmd + alt + ctrl + lshift - j : yabai -m window --warp south
+# rshift + rcmd + alt + ctrl + lshift - k : yabai -m window --warp north
+# rshift + rcmd + alt + ctrl + lshift - h : yabai -m window --warp west
+# rshift + rcmd + alt + ctrl + lshift - l : yabai -m window --warp east
+
+# move window and split
+rshift + rcmd + alt + ctrl + lshift - j : aerospace move down || aerospace move-node-to-monitor down
+rshift + rcmd + alt + ctrl + lshift - k : aerospace move up
+rshift + rcmd + alt + ctrl + lshift - h : aerospace move-node-to-monitor left
+rshift + rcmd + alt + ctrl + lshift - l : aerospace move right
+
+# shift + ctrl - left : WIN_ID=$(yabai -m query --windows --window | jq '.id'); yabai -m window --swap west; [[ ! $? == 0 ]] && (yabai -m display --focus west; yabai -m window last --insert east; yabai -m window --focus $WIN_ID; yabai -m window --display prev; yabai -m window --focus $WIN_ID);
+# shift + ctrl - right : WIN_ID=$(yabai -m query --windows --window | jq '.id'); yabai -m window --swap east; [[ ! $? == 0 ]] && (yabai -m display --focus east; yabai -m window first --insert west; yabai -m window --focus $WIN_ID; yabai -m window --display next; yabai -m window --focus $WIN_ID);
+
+# move window to display left and right
+rshift + rcmd + alt + ctrl + lshift - 0x21 : yabai -m window --display west; yabai -m display --focus west;
+rshift + rcmd + alt + ctrl + lshift - 0x1E : yabai -m window --display east; yabai -m display --focus east;
+
+#move window to prev and next space
+rshift + rcmd + alt + ctrl + lshift - p : yabai -m window --space prev;
+rshift + rcmd + alt + ctrl + lshift - n : yabai -m window --space next;
+
+# move window to space #
+rshift + rcmd + alt + ctrl + lshift - 1 : yabai -m window --space 1;
+rshift + rcmd + alt + ctrl + lshift - 2 : yabai -m window --space 2;
+rshift + rcmd + alt + ctrl + lshift - 3 : yabai -m window --space 3;
+rshift + rcmd + alt + ctrl + lshift - 4 : yabai -m window --space 4;
+rshift + rcmd + alt + ctrl + lshift - 5 : yabai -m window --space 5;
+rshift + rcmd + alt + ctrl + lshift - 6 : yabai -m window --space 6;
+rshift + rcmd + alt + ctrl + lshift - 7 : yabai -m window --space 7;
+rshift + rcmd + alt + ctrl + lshift - 8 : yabai -m window --space 8;
+rshift + rcmd + alt + ctrl + lshift - 9 : yabai -m window --space 9;
+rshift + rcmd + alt + ctrl + lshift - 0 : yabai -m window --space 0;
+
+# stop/start/restart yabai
+rshift + rcmd + lcmd + alt + ctrl - q: yabai --stop-service
+rshift + rcmd + lcmd + alt + ctrl - s: yabai --start-service
+rshift + rcmd + lcmd + alt + ctrl - r: yabai --restart-service
+
+# # Focus space focused before the current one (so you can alternate)
+# rshift + rcmd + alt + ctrl - p : yabai -m space --focus prev
+# rshift + rcmd + alt + ctrl - n : yabai -m space --focus next
+# yabai -m space --focus recent
+#
+# # Focus previous space by mission-control index
+# yabai -m space --focus prev
+#
+# # Focus next space by mission-control index
+# yabai -m space --focus next
+#
+# # Focus space with mission-control index 2
+# yabai -m space --focus 2
+#
+# # Focus next space by mission-control index if one exists, otherwise focus the first space
+# yabai -m space --focus next || yabai -m space --focus first
+#
+# # Focus previous space by mission-control index if one exists, otherwise focus the last space
+# yabai -m space --focus prev || yabai -m space --focus last
