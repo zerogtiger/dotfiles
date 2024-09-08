@@ -1,16 +1,38 @@
 [colors.bright]
-black = "#676767"
-red = "#ff6d67"
-green = "#5ff967"
-yellow = "#fefb67"
-blue = "#6871ff"
-magenta = "#ff76ff"
-cyan = "#5ffdff"
-white = "#fffeff"
+black = "#000000"
+red = "#d70000"
+green = "#00ff00"
+yellow = "#ffd700"
+blue = "#5f87ff"
+magenta = "#ff5fff"
+cyan = "#5fffff"
+white = "#ffffff"
+# black = "#676767"
+# red = "#ff6d67"
+# green = "#5ff967"
+# yellow = "#fefb67"
+# blue = "#6871ff"
+# magenta = "#ff76ff"
+# cyan = "#5ffdff"
+# white = "#fffeff"
 
 [colors.cursor]
 cursor = "#c7c7c7"
 text = "#fffeff"
+
+# [colors.normal]
+# black = "#000000"
+# red = "#d70000"
+# green = "#00ff00"
+# yellow = "#ffff00"
+# blue = "#5f87ff"
+# magenta = "#ff5fff"
+# cyan = "#5fffff"
+# white = "#ffffff"
+
+# blue = "#00afff"
+# 075: #5fafff
+# 057: #5f00ff
 
 [colors.normal]
 black = "#676767"
@@ -21,6 +43,7 @@ blue = "#6871ff"
 magenta = "#ff76ff"
 cyan = "#5ffdff"
 white = "#fffeff"
+
 # black = "#000000"
 # red = "#c91b00"
 # green = "#00c200"
@@ -38,7 +61,8 @@ foreground = "#c7c7c7"
 blinking = "Never"
 
 [env]
-TERM = "xterm-256color"
+TERM = "screen-256color"
+# TERM = "xterm-256color"
 # enable_rgb="true"
 
 [font]
@@ -59,7 +83,7 @@ style = "Light Oblique"
 
 [font.normal]
 family = "Iosevka Nerd Font"
-style = "Light"
+style = "None"
 
 [font.offset]
 x = 0
@@ -92,11 +116,19 @@ mods = "Control"
 
 [window]
 dynamic_title = true
+decorations = "Buttonless"
 # history = 10000
 # live_config_reload = true
 # save_to_clipboard = true
 # semantic_escape_chars = ",│`|:\"' ()[]{}<>"
 
 [window.padding]
-x = 0
-y = 0
+x = 6
+y = 6
+
+[mouse]
+hide_when_typing = true
+
+
+
+

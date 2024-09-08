@@ -229,4 +229,9 @@ require('lazy').setup({
   -- Scrolling
   { 'psliwka/vim-smoothie' },
 
+  -- My own stuff
+  {
+    'zerogtiger/TargetFile.nvim',
+    dependencies = { 'numToStr/FTerm.nvim' }
+  },
 })
