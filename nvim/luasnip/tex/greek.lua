@@ -137,6 +137,11 @@ return
       t("\\phi"),
   },
   { condition = helpers.line_begin_or_non_letter_and_math }),
+  s({trig=";vF", snippetType="autosnippet"},
+    {
+      t("\\varPhi"),
+  },
+  { condition = helpers.line_begin_or_non_letter_and_math }),
   s({trig=";vf", snippetType="autosnippet"},
     {
       t("\\varphi"),

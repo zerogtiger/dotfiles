@@ -17,12 +17,15 @@ lsp.ensure_installed({
     'texlab', -- latex
     'pylsp',  --python
     'r_language_server',
-    'tsserver',
+    -- 'typescript-language-server',
+    'ts_ls',
     'html', -- html
     'cssls',
     'tailwindcss',
     'rust_analyzer',
     'biome', -- json, js, ts
+    -- deprecated
+    -- 'tsserver',
 })
 
 -- Fix Undefined global 'vim'

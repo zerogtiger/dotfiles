@@ -4,10 +4,20 @@ local get_visual = helpers.get_visual
 -- Return snippet tables
 return
 {
+  -- LEFT/RIGHT angle
+  s({trig = "l%<", regTrig = true, wordTrig = false, snippetType="autosnippet"},
+    fmta(
+      "\\langle <> \\rangle",
+      {
+        d(1, get_visual),
+      }
+    ),
+    {condition = helpers.line_begin_or_non_letter_and_math}
+  ),
   -- LEFT/RIGHT ABSOLUTE VALUE
   s({trig = "l%|", regTrig = true, wordTrig = false, snippetType="autosnippet"},
     fmta(
-      "\\left|<>\\right|",
+      "\\left|<>\\righta",
       {
         d(1, get_visual),
       }
@@ -89,7 +99,7 @@ return
     fmta(
       [[
       \[
-        <>
+          <>
       \]
       ]],
       {

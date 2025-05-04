@@ -3,7 +3,7 @@ require("TargetFile").setup({
     ['.cpp'] = {
       name = 'C++',
       ext = '.cpp',
-      compile_cmd = 'g++ -g -Wshadow -Wall -Wextra --std=c++17 %fp -o %fben',
+      compile_cmd = 'g++ -g -Wshadow -Wall -Wextra --std=c++20 %fp -o %fben',
       execute_cmd = '%fben',
       debug_cmd = nil,
       debut_window_cmd = nil,

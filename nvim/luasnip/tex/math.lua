@@ -626,6 +626,77 @@ return
       end
     }
   ),
+  -- Logical operators
+  s({ trig = "lN", snippetType = "autosnippet" },
+    {
+      t("\\lnot "),
+    },
+    {
+      condition = function(line_to_cursor, matched_trigger)
+        return line_to_cursor:sub(1, -(#matched_trigger + 1)):match("[^%\\]")
+      end
+    }
+  ),
+  s({ trig = "lA", snippetType = "autosnippet" },
+    {
+      t("\\land "),
+    },
+    {
+      condition = function(line_to_cursor, matched_trigger)
+        return line_to_cursor:sub(1, -(#matched_trigger + 1)):match("[^%\\]")
+      end
+    }
+  ),
+  s({ trig = "lO", snippetType = "autosnippet" },
+    {
+      t("\\lor "),
+    },
+    {
+      condition = function(line_to_cursor, matched_trigger)
+        return line_to_cursor:sub(1, -(#matched_trigger + 1)):match("[^%\\]")
+      end
+    }
+  ),
+  s({ trig = "lI", snippetType = "autosnippet" },
+    {
+      t("\\rightarrow "),
+    },
+    {
+      condition = function(line_to_cursor, matched_trigger)
+        return line_to_cursor:sub(1, -(#matched_trigger + 1)):match("[^%\\]")
+      end
+    }
+  ),
+  s({ trig = "sU", snippetType = "autosnippet" },
+    {
+      t("\\cup "),
+    },
+    {
+      condition = function(line_to_cursor, matched_trigger)
+        return line_to_cursor:sub(1, -(#matched_trigger + 1)):match("[^%\\]")
+      end
+    }
+  ),
+  s({ trig = "sN", snippetType = "autosnippet" },
+    {
+      t("\\cap "),
+    },
+    {
+      condition = function(line_to_cursor, matched_trigger)
+        return line_to_cursor:sub(1, -(#matched_trigger + 1)):match("[^%\\]")
+      end
+    }
+  ),
+  s({ trig = "|=", snippetType = "autosnippet" },
+    {
+      t("\\models "),
+    },
+    {
+      condition = function(line_to_cursor, matched_trigger)
+        return line_to_cursor:sub(1, -(#matched_trigger + 1)):match("[^%\\]")
+      end
+    }
+  ),
 
   -- ELLIPSIS
   s({ trig = "ell", wordTrig = false, regTrig = true },
@@ -660,6 +731,32 @@ return
     \begin{pmatrix}
         <>
     \end{pmatrix}
+    ]],
+      {
+        i(1),
+      }
+    ),
+    { condition = helpers.line_begin_or_non_letter_and_math }
+  ),
+  s({ trig = "psm", wordTrig = false, regTrig = true },
+    fmta(
+    [[
+    \begin{psmallmatrix}
+        <>
+    \end{psmallmatrix}
+    ]],
+      {
+        i(1),
+      }
+    ),
+    { condition = helpers.line_begin_or_non_letter_and_math }
+  ),
+  s({ trig = "bsm", wordTrig = false, regTrig = true },
+    fmta(
+    [[
+    \begin{bsmallmatrix}
+        <>
+    \end{bsmallmatrix}
     ]],
       {
         i(1),
