@@ -1,4 +1,4 @@
-vim.cmd("colorscheme modus")
+vim.cmd("colorscheme modus_vivendi")
 -- vim.cmd.highlight('DiagnosticUnderlineError', 'gui=undercurl')
 -- vim.cmd.highlight('DiagnosticUnderlineHint', 'gui=undercurl')
 -- vim.cmd.highlight('DiagnosticUnderlineWarn', 'gui=undercurl')

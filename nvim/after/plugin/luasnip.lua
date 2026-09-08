@@ -28,7 +28,8 @@ ls.config.set_config({ -- Setting LuaSnip config
     -- Use Tab (or some other key if you prefer) to trigger visual selection
     store_selection_keys = "<C-L>",
 
-    update_events = 'TextChanged,TextChangedI'
+    -- update_events = 'TextChanged,TextChangedI'
+    update_events = 'TextChanged'
 })
 
 vim.keymap.set({ "i" }, "<C-O>", function() ls.expand() end, { silent = true })

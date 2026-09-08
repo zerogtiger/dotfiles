@@ -155,6 +155,16 @@ return
     ),
     { condition = helpers.line_begin_or_non_letter_and_math }
   ),
+  -- overline
+  s({ trig = "oll", wordTrig = false, regTrig = true, snippetType = "autosnippet" },
+    fmta(
+      "\\overline{<>}",
+      {
+        d(1, get_visual),
+      }
+    ),
+    { condition = helpers.line_begin_or_non_letter_and_math }
+  ),
   -- UNIT VECTOR WITH HAT, i.e. \uvec{}
   s({ trig = "uv", wordTrig = false, regTrig = true, snippetType = "autosnippet" },
     fmta(
@@ -608,6 +618,27 @@ return
     },
     { condition = helpers.in_mathzone }
   ),
+  -- \otimes
+  s({ trig = "oxx", snippetType = "autosnippet" },
+    {
+      t("\\otimes "),
+    },
+    { condition = helpers.in_mathzone }
+  ),
+  -- \oplus
+  s({ trig = "o++", snippetType = "autosnippet" },
+    {
+      t("\\oplus "),
+    },
+    { condition = helpers.in_mathzone }
+  ),
+  -- \ominus
+  s({ trig = "o--", snippetType = "autosnippet" },
+    {
+      t("\\ominus "),
+    },
+    { condition = helpers.in_mathzone }
+  ),
   -- CROSS PRODUCT, i.e. \times
   s({ trig = "xx", snippetType = "autosnippet" },
     {
@@ -620,11 +651,7 @@ return
     {
       t("\\infty "),
     },
-    {
-      condition = function(line_to_cursor, matched_trigger)
-        return line_to_cursor:sub(1, -(#matched_trigger + 1)):match("[^%\\]")
-      end
-    }
+    { condition = helpers.in_mathzone }
   ),
   -- Logical operators
   s({ trig = "lN", snippetType = "autosnippet" },

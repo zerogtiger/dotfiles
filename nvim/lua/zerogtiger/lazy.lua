@@ -28,10 +28,12 @@ require('lazy').setup({
 
   -- Fuzzy finder via Telescope
   {
-    'nvim-telescope/telescope.nvim',
-    -- tag = '0.1.x',
-    branch = '0.1.x',
-    dependencies = { 'nvim-lua/plenary.nvim' }
+    'nvim-telescope/telescope.nvim', version = '*',
+    dependencies = {
+        'nvim-lua/plenary.nvim',
+        -- optional but recommended
+        { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
+    }
   },
 
   -- Undotree
@@ -70,33 +72,67 @@ require('lazy').setup({
   -- Syntax highlighting via Treesitter
   {
     'nvim-treesitter/nvim-treesitter',
-    dependencies = {
-      'nvim-treesitter/nvim-treesitter-textobjects',
-    },
     build = ':TSUpdate',
+    branch = "main",
+    lazy = false,
   },
-  { 'nvim-treesitter/playground' },
+  -- { 'nvim-treesitter/playground' },
 
   -- LSP
   {
-    'VonHeikemen/lsp-zero.nvim',
-    branch = 'v2.x',
+    "mason-org/mason-lspconfig.nvim",
+    opts = {},
     dependencies = {
-      -- LSP Support
-      { 'neovim/nvim-lspconfig' }, -- Required
-      {                            -- Optional
-        'williamboman/mason.nvim',
-        build = function()
-          pcall(vim.cmd, 'MasonUpdate')
-        end,
-      },
-      { 'williamboman/mason-lspconfig.nvim' }, -- Optional
+      { "mason-org/mason.nvim", opts = {} },
+      "neovim/nvim-lspconfig",
+    },
+  },
+  {
+    "hrsh7th/nvim-cmp",
+    dependencies = {
+      "hrsh7th/cmp-nvim-lsp",
+      "L3MON4D3/LuaSnip",
+      "saadparwaiz1/cmp_luasnip",
+    },
+  },
+  -- {
+  --   'VonHeikemen/lsp-zero.nvim',
+  --   branch = 'v2.x',
+  --   dependencies = {
+  --     -- LSP Support
+  --     { 'neovim/nvim-lspconfig' }, -- Required
+  --     {                            -- Optional
+  --       'williamboman/mason.nvim',
+  --       build = function()
+  --         pcall(vim.cmd, 'MasonUpdate')
+  --       end,
+  --     },
+  --     { 'williamboman/mason-lspconfig.nvim' }, -- Optional
+  --
+  --     -- Autocompletion
+  --     { 'hrsh7th/nvim-cmp' },     -- Required
+  --     { 'hrsh7th/cmp-nvim-lsp' }, -- Required
+  --     { 'L3MON4D3/LuaSnip' },     -- Required
+  --   }
+  -- },
 
-      -- Autocompletion
-      { 'hrsh7th/nvim-cmp' },     -- Required
-      { 'hrsh7th/cmp-nvim-lsp' }, -- Required
-      { 'L3MON4D3/LuaSnip' },     -- Required
-    }
+  -- Jupyter stuff
+  {
+    "benlubas/molten-nvim",
+    version = "^1.0.0", -- use version <2.0.0 to avoid breaking changes
+    build = ":UpdateRemotePlugins",
+    init = function()
+      -- this is an example, not a default. Please see the readme for more configuration options
+      vim.g.molten_output_win_max_height = 12
+    end,
+  },
+
+  {
+    "quarto-dev/quarto-nvim",
+    dependencies = {
+      "jmbuhr/otter.nvim",
+      "nvim-treesitter/nvim-treesitter",
+    },
   },
 
   -- Make related
@@ -237,13 +273,121 @@ require('lazy').setup({
   { 'seandewar/killersheep.nvim' },
   { 'Eandrju/cellular-automaton.nvim' },
   { 'alec-gibson/nvim-tetris' },
+  { "axsaucedo/neovim-power-mode" },
 
-  -- Scrolling
-  { 'psliwka/vim-smoothie' },
+
+  {
+    "steveslatky/vimcino",
+    --- optional custom options
+    ---@field vimcino.Config
+    opts = {
+      -- Change up the functionally if wanted
+    },
+  },
+  { 'alanfortlink/blackjack.nvim' },
+  { 'seandewar/actually-doom.nvim' },
+  -- { 'nda-cunh/SupraPacman' },
+  {
+    "Febri-i/snake.nvim",
+    dependencies = {
+      "Febri-i/fscreen.nvim"
+    },
+    opts = {}
+  },
+  {
+    "NStefan002/2048.nvim",
+    cmd = "Play2048",
+    config = true,
+  },
+
+  -- -- Scrolling
+  -- { 'psliwka/vim-smoothie' },
 
   -- My own stuff
   {
     'zerogtiger/TargetFile.nvim',
     dependencies = { 'numToStr/FTerm.nvim' }
   },
+
+  -- -- AI stuff
+  -- {
+  --   "yetone/avante.nvim",
+  --   -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
+  --   -- ⚠️ must add this setting! ! !
+  --   build = vim.fn.has("win32") ~= 0
+  --       and "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false"
+  --       or "make",
+  --   event = "VeryLazy",
+  --   version = false, -- Never set this value to "*"! Never!
+  --   ---@module 'avante'
+  --   ---@type avante.Config
+  --   opts = {
+  --     -- add any opts here
+  --     -- for example
+  --     provider = "gemini",
+  --     providers = {
+  --       gemini = {
+  --         -- endpoint = "https://generativelanguage.googleapis.com",
+  --         model = "gemini-2.0-flash",
+  --         -- timeout = 40000, -- Timeout in milliseconds
+  --         -- extra_request_body = {
+  --         --   temperature = 0.75,
+  --         --   max_tokens = 20480,
+  --         -- },
+  --       },
+  --       -- moonshot = {
+  --       --   endpoint = "https://api.moonshot.ai/v1",
+  --       --   model = "kimi-k2-0711-preview",
+  --       --   timeout = 30000, -- Timeout in milliseconds
+  --       --   extra_request_body = {
+  --       --     temperature = 0.75,
+  --       --     max_tokens = 32768,
+  --       --   },
+  --       -- },
+  --     },
+  --   },
+  --   dependencies = {
+  --     "nvim-lua/plenary.nvim",
+  --     "MunifTanjim/nui.nvim",
+  --     --- The below dependencies are optional,
+  --     "echasnovski/mini.pick",       -- for file_selector provider mini.pick
+  --     "nvim-telescope/telescope.nvim", -- for file_selector provider telescope
+  --     "hrsh7th/nvim-cmp",            -- autocompletion for avante commands and mentions
+  --     "ibhagwan/fzf-lua",            -- for file_selector provider fzf
+  --     "stevearc/dressing.nvim",      -- for input provider dressing
+  --     "folke/snacks.nvim",           -- for input provider snacks
+  --     "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
+  --     "zbirenbaum/copilot.lua",      -- for providers='copilot'
+  --     {
+  --       -- support for image pasting
+  --       "HakonHarnes/img-clip.nvim",
+  --       event = "VeryLazy",
+  --       opts = {
+  --         -- recommended settings
+  --         default = {
+  --           embed_image_as_base64 = false,
+  --           prompt_for_file_name = false,
+  --           drag_and_drop = {
+  --             insert_mode = true,
+  --           },
+  --           -- required for Windows users
+  --           use_absolute_path = true,
+  --         },
+  --       },
+  --     },
+  --     {
+  --       -- Make sure to set this up properly if you have lazy=true
+  --       'MeanderingProgrammer/render-markdown.nvim',
+  --       opts = {
+  --         file_types = { "markdown", "Avante" },
+  --       },
+  --       ft = { "markdown", "Avante" },
+  --     },
+  --   },
+  -- }
+})
+
+require("power-mode").setup({
+  -- Enable power mode when Neovim starts (default: true)
+  auto_enable = false,
 })

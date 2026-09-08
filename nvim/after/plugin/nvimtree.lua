@@ -1,6 +1,9 @@
 vim.keymap.set('n', '<leader>fe', vim.cmd.NvimTreeToggle)
 
 require("nvim-tree").setup({
+  view = {
+    adaptive_size = true,
+  },
   renderer = {
     -- full_name = false,
     -- group_empty = true,
